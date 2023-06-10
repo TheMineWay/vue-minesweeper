@@ -11,7 +11,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.7.0",
-    "@types/node": "^18",
+    "@types/node": "^20",
     "daisyui": "^3.0.23",
     "nuxt": "^3.5.2"
   }
