@@ -1,40 +1,47 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+name: docs
 
-name: Node.js CI
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+# define the trigger
+on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  docs:
+    runs-on: ${{ matrix.os }}
+    env:
+      # We used "docs" as directory name for our documentation, we will be referencing this later
+      working-directory: docs
 
     strategy:
       matrix:
-        node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        os: [ubuntu-latest]
+        node: [14]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      # Check out master branch
+      - name: Checkout
+        uses: actions/checkout@master
+
+      # Downloads, configures and caches Node.js
+      - name: Setup node env
+        uses: actions/setup-node@v2.1.4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci
-      - run: npm run generate
+          node-version: ${{ matrix.node }}
+
+      # Install all dependencies needed to build our documentation
+      - name: Install dependencies
+        # Referencing our docs directory here
+        working-directory: ${{env.working-directory}}
+        run: npm i
+
+      # The generate command is used to invoke Nuxt static site generation
+      - name: Generate
+        working-directory: ${{env.working-directory}}
+        run: npm run generate
+
+      # Pushes the files to a branch called "gh-pages" that will be used as deployment branch
       - name: Deploy
-        run: |
-          git config --global user.name $user_name
-          git config --global user.email $user_email
-          git remote set-url origin https://${github_token}@github.com/${repository}
-          npm run deploy
-        env:
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # This token is automatically invoked
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
+          # Nuxt export the statically generated files in the dist directory by default
+          publish_dir: ./${{env.working-directory}}/dist
