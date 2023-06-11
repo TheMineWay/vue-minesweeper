@@ -1,41 +1,34 @@
-name: Build and deploy
-
-# define the trigger
-on: [push, pull_request]
-
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    env:
-      # We used "docs" as directory name for our documentation, we will be referencing this later
-      working-directory: .
-
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        node: [18]
-
+        node-version: [18]
     steps:
-      # Check out main branch
-      - name: Checkout
-        uses: actions/checkout@main
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
 
-      # Downloads, configures and caches Node.js
-      - name: Setup node env
-        uses: actions/setup-node@v2.1.4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ matrix.node-version }}
 
-      # Install all dependencies needed to build our documentation
-      - name: Install dependencies
-        # Referencing our docs directory here
-        working-directory: ${{env.working-directory}}
-        run: npm i
+      - name: Install & Generate 🔧
+        run: |
+          npm ci
+          npm run generate
+        env:
+          NUXT_APP_BASE_URL: ${{ vars.NUXT_APP_BASE_URL  }}
 
-      # The generate command is used to invoke Nuxt static site generation
-      - name: Generate
-        working-directory: ${{env.working-directory}}
-        run: npm run generate
-      - name: Push to branch
-        working-directory: ${{env.working-directory}}
-        run: git stash & git chechout gh-pages & git stash apply & git add . & git commit "comm" & git push
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
