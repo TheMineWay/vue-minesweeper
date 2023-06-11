@@ -1,3 +1,7 @@
+<script setup lang="ts">
+console.log("INIT");
+</script>
+
 <template>
   <div class="h-full">
     <div class="hero bg-base-200 h-full">
