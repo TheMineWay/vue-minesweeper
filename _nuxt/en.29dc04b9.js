@@ -1,0 +1,1 @@
+const n={"main-page":{"intro-hero":{Title:e=>{const{normalize:r}=e;return r(["Minesweeper"])},Description:e=>{const{normalize:r}=e;return r(["A web based Minesweeper game."])},"New-game":e=>{const{normalize:r}=e;return r(["New game"])}}}};export{n as default};
