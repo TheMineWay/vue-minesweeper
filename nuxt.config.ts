@@ -15,4 +15,13 @@ export default defineNuxtConfig({
     langDir: "locales/",
   },
   components: [{ path: "~/components", pathPrefix: false }],
+  buildModules: ["@nuxtjs/pwa"],
+  pwa: {
+    manifest: {
+      name: "Minesweeper",
+      description: "A web based Minesweeper game",
+      lang: "en",
+      useWebmanifestExtension: false,
+    },
+  },
 });
