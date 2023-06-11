@@ -25,7 +25,4 @@ export default defineNuxtConfig({
     },
   },
   ssr: false,
-  app: {
-    baseURL: "/vue-minesweeper/",
-  },
 });
