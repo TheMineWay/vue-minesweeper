@@ -9,7 +9,9 @@
           <p class="py-6">
             {{ $t("main-page.intro-hero.Description") }}
           </p>
-          <button class="btn btn-primary">Start game</button>
+          <button class="btn btn-primary">
+            {{ $t("main-page.intro-hero.New-game") }}
+          </button>
         </div>
       </div>
     </div>
