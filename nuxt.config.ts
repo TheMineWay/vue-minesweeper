@@ -24,7 +24,4 @@ export default defineNuxtConfig({
       useWebmanifestExtension: false,
     },
   },
-  app: {
-    baseURL: "/vue-minesweeper/",
-  },
 });
