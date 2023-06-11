@@ -23,6 +23,7 @@ export default defineNuxtConfig({
       lang: "en",
       useWebmanifestExtension: false,
     },
+    icon: false,
   },
   ssr: false,
 });
