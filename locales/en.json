@@ -9,7 +9,8 @@
             "Title": "New game",
             "form": {
                 "Height": "Height",
-                "Width": "Width"
+                "Width": "Width",
+                "Start": "Start game"
             }
         }
     }
