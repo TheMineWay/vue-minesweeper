@@ -5,4 +5,6 @@ export class Game {
   public constructor(width: number, height: number) {
     this.board = new Board(width, height);
   }
+
+  public getBoard = () => this.board;
 }

@@ -6,7 +6,7 @@ const game = ref<Game>();
 
 <template>
   <div v-if="game" class="h-full">
-    <Game />
+    <Game :game="game" />
   </div>
   <div v-else class="h-full">
     <NewGameModal :setGame="(_game: Game) => game = _game" />

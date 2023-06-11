@@ -31,4 +31,6 @@ export class Board {
       this.board[x][y] = BoardCell.CreateMine();
     } while (placedMines.length < mines);
   }
+
+  public getBoard = () => this.board;
 }
