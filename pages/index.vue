@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { Game } from "../services/game/game.service";
+import { Game as GameService } from "../services/game/game.service";
 
-const game = ref<Game>();
+const game = ref<GameService>();
 </script>
 
 <template>
@@ -9,7 +9,7 @@ const game = ref<Game>();
     <Game :game="game" />
   </div>
   <div v-else class="h-full">
-    <NewGameModal :setGame="(_game: Game) => game = _game" />
+    <NewGameModal :setGame="(_game: GameService) => game = _game" />
     <div class="hero bg-base-200 h-full">
       <div class="hero-content text-center">
         <div class="max-w-md">
