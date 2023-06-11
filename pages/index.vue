@@ -1,4 +1,6 @@
 <template>
+  <NewGameModal />
+
   <div class="h-full">
     <div class="hero bg-base-200 h-full">
       <div class="hero-content text-center">
@@ -9,7 +11,7 @@
           <p class="py-6">
             {{ $t("main-page.intro-hero.Description") }}
           </p>
-          <button class="btn btn-primary">
+          <button onclick="new_game_modal.showModal()" class="btn btn-primary">
             {{ $t("main-page.intro-hero.New-game") }}
           </button>
         </div>
