@@ -24,4 +24,8 @@ export default defineNuxtConfig({
       useWebmanifestExtension: false,
     },
   },
+  ssr: false,
+  nitro: {
+    preset: "service-worker",
+  },
 });
