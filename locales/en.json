@@ -1,0 +1,9 @@
+{
+    "main-page": {
+        "intro-hero": {
+            "Title": "Minesweeper",
+            "Description": "A web based Minesweeper game.",
+            "New-game": "New game"
+        }
+    }
+}
