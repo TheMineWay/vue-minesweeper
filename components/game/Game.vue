@@ -7,10 +7,17 @@ const props = defineProps<{
 </script>
 
 <template>
-  <h1>game</h1>
-  <table class="map">
-    <tr v-for="row of props.game.getBoard().getBoard()">
-      <td v-for="cell of row">X</td>
-    </tr>
-  </table>
+  <div class="flex justify-center content-center">
+    <table class="map">
+      <tr v-for="row of props.game.getBoard().getBoard()">
+        <td v-for="cell of row">{{ cell.hasMine ? "X" : "0" }}</td>
+      </tr>
+    </table>
+  </div>
 </template>
+
+<style scoped>
+table.map {
+  border: 1px solid white;
+}
+</style>
