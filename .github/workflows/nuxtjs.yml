@@ -36,3 +36,6 @@ jobs:
       - name: Generate
         working-directory: ${{env.working-directory}}
         run: npm run generate
+      - name: Push to branch
+        working-directory: ${{env.working-directory}}
+        run: git stash & git chechout gh-pages & git stash apply & git add . & git commit "comm" & git push
