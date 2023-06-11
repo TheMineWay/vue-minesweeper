@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n", "@vite-pwa/nuxt"],
   i18n: {
     locales: [
       {
@@ -15,7 +15,6 @@ export default defineNuxtConfig({
     langDir: "locales/",
   },
   components: [{ path: "~/components", pathPrefix: false }],
-  buildModules: ["@nuxtjs/pwa"],
   pwa: {
     manifest: {
       name: "Minesweeper",
@@ -23,7 +22,6 @@ export default defineNuxtConfig({
       lang: "en",
       useWebmanifestExtension: false,
     },
-    icon: false,
   },
   ssr: false,
 });
