@@ -1,5 +1,5 @@
 <script setup lang="ts">
-console.log("INIT 2");
+console.log("INIT");
 </script>
 
 <template>
