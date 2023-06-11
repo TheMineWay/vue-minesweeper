@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+const width = ref(10);
+const height = ref(10);
+</script>
+
 <template>
   <dialog id="new_game_modal" class="modal modal-bottom sm:modal-middle">
     <form method="dialog" class="modal-box flex flex-col gap-4">
@@ -10,11 +15,13 @@
             <div class="flex gap-4">
               <input
                 type="number"
+                v-model="height"
                 :placeholder="$t('main-page.new-game-modal.form.Height')"
                 class="input input-bordered w-full max-w-xs"
               />
               <input
                 type="number"
+                v-model="width"
                 :placeholder="$t('main-page.new-game-modal.form.Width')"
                 class="input input-bordered w-full max-w-xs"
               />
