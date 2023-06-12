@@ -92,7 +92,7 @@ const revealCell = (board: BoardCell[][], x: number, y: number) => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 table.map {
   tr {
     td {
