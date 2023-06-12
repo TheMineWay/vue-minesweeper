@@ -6,7 +6,7 @@ const props = defineProps<{
   game: Game;
 }>();
 
-const board = ref<BoardCell[][]>(props.game.getBoard().getBoard());
+const boardState = ref<BoardCell[][]>(props.game.getBoard().getBoard());
 
 const onRevealCell = (x: number, y: number) => {
   console.log({ x, y });
@@ -14,13 +14,20 @@ const onRevealCell = (x: number, y: number) => {
 
 const onFlagCell = (x: number, y: number) => {
   console.log({ x, y });
+  const board = boardState.value;
+  const cell = board[x][y];
+  if (cell.isRevealed()) return;
+
+  cell.swapFlag();
+  board[x][y] = cell;
+  boardState.value = [...board];
 };
 </script>
 
 <template>
   <div class="flex justify-center content-center">
     <table class="map">
-      <tr v-for="(row, x) of board">
+      <tr v-for="(row, x) of boardState">
         <td
           v-for="(cell, y) of row"
           @click="() => onRevealCell(x, y)"
