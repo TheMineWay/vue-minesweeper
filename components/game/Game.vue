@@ -27,17 +27,37 @@ const onFlagCell = (x: number, y: number) => {
 };
 
 const revealCell = (board: BoardCell[][], x: number, y: number) => {
+  // Check if exists
+  if (
+    x < 0 ||
+    y < 0 ||
+    x >= board.length ||
+    y >= board[x].length ||
+    board[x][y].isRevealed()
+  )
+    return board;
+
   const cell = board[x][y];
   if (cell.hasMine) {
     // Mine found
     bombed.value = true;
   }
 
+  cell.reveal();
+
   if (cell.minesAround(board, x, y) === 0) {
     // Reveal around
-  }
+    let nBoard = [...board];
+    nBoard = revealCell(nBoard, x - 1, y + 1);
+    nBoard = revealCell(nBoard, x + 1, y + 1);
+    nBoard = revealCell(nBoard, x - 1, y - 1);
+    nBoard = revealCell(nBoard, x + 1, y - 1);
 
-  cell.reveal();
+    nBoard = revealCell(nBoard, x, y + 1);
+    nBoard = revealCell(nBoard, x, y - 1);
+    nBoard = revealCell(nBoard, x + 1, y);
+    nBoard = revealCell(nBoard, x - 1, y);
+  }
 
   board[x][y] = cell;
   return board;
