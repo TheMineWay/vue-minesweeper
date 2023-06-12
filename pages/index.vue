@@ -1,5 +1,15 @@
+<script lang="ts" setup>
+import { Game as GameService } from "../services/game/game.service";
+
+const game = ref<GameService>();
+</script>
+
 <template>
-  <div class="h-full">
+  <div v-if="game" class="h-full">
+    <Game :game="game" />
+  </div>
+  <div v-else class="h-full">
+    <NewGameModal :setGame="(_game: GameService) => game = _game" />
     <div class="hero bg-base-200 h-full">
       <div class="hero-content text-center">
         <div class="max-w-md">
@@ -9,7 +19,7 @@
           <p class="py-6">
             {{ $t("main-page.intro-hero.Description") }}
           </p>
-          <button class="btn btn-primary">
+          <button onclick="new_game_modal.showModal()" class="btn btn-primary">
             {{ $t("main-page.intro-hero.New-game") }}
           </button>
         </div>

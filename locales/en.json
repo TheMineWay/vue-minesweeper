@@ -4,6 +4,20 @@
             "Title": "Minesweeper",
             "Description": "A web based Minesweeper game.",
             "New-game": "New game"
+        },
+        "new-game-modal": {
+            "Title": "New game",
+            "form": {
+                "Height": "Height",
+                "Width": "Width",
+                "Start": "Start game"
+            }
+        }
+    },
+    "game": {
+        "endgame": {
+            "Restart": "Restart",
+            "Win": "Board completed!"
         }
     }
 }
