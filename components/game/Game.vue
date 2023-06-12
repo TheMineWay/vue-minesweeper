@@ -9,14 +9,18 @@ const props = defineProps<{
 const bombed = ref<boolean>(false);
 const boardState = ref<BoardCell[][]>(props.game.getBoard().getBoard());
 
+const stillRemaining = boardState.value.some((r) =>
+  r.some((c) => !c.hasMine && !c.isRevealed())
+);
+
 const onRevealCell = (x: number, y: number) => {
-  if (bombed.value) return;
+  if (bombed.value || !stillRemaining) return;
   const board = boardState.value;
   boardState.value = [...revealCell(board, x, y)];
 };
 
 const onFlagCell = (x: number, y: number) => {
-  if (bombed.value) return;
+  if (bombed.value || !stillRemaining) return;
   const board = boardState.value;
   const cell = board[x][y];
   if (cell.isRevealed()) return;
@@ -129,7 +133,11 @@ const restart = () => {
     </div>
 
     <div class="flex justify-center content-center">
-      <button @click="restart" v-if="bombed" class="btn btn-primary">
+      <button
+        @click="restart"
+        v-if="bombed || !stillRemaining"
+        class="btn btn-primary"
+      >
         {{ $t("game.endgame.Restart") }}
       </button>
     </div>
