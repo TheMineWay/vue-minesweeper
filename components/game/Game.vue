@@ -13,7 +13,6 @@ const onRevealCell = (x: number, y: number) => {
 };
 
 const onFlagCell = (x: number, y: number) => {
-  console.log({ x, y });
   const board = boardState.value;
   const cell = board[x][y];
   if (cell.isRevealed()) return;
