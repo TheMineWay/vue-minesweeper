@@ -13,5 +13,10 @@
                 "Start": "Start game"
             }
         }
+    },
+    "game": {
+        "endgame": {
+            "Restart": "Restart"
+        }
     }
 }

@@ -76,8 +76,8 @@ const restart = () => {
 </script>
 
 <template>
-  <div class="flex justify-center content-center">
-    <div>
+  <div class="flex justify-center content-center flex-col gap-4">
+    <div class="flex justify-center content-center">
       <table class="map">
         <tr v-for="(row, x) of boardState">
           <td
@@ -127,7 +127,12 @@ const restart = () => {
         </tr>
       </table>
     </div>
-    <button @click="restart" v-if="bombed" class="btn btn-primary"></button>
+
+    <div class="flex justify-center content-center">
+      <button @click="restart" v-if="bombed" class="btn btn-primary">
+        {{ $t("game.endgame.Restart") }}
+      </button>
+    </div>
   </div>
 </template>
 
