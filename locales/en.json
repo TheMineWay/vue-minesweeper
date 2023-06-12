@@ -16,7 +16,8 @@
     },
     "game": {
         "endgame": {
-            "Restart": "Restart"
+            "Restart": "Restart",
+            "Win": "Board completed!"
         }
     }
 }
