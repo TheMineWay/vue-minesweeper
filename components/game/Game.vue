@@ -41,6 +41,7 @@ const revealCell = (board: BoardCell[][], x: number, y: number) => {
   if (cell.hasMine) {
     // Mine found
     bombed.value = true;
+    return board;
   }
 
   cell.reveal();
