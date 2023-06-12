@@ -74,7 +74,11 @@ const revealCell = (board: BoardCell[][], x: number, y: number) => {
           @click="() => onRevealCell(x, y)"
           @auxclick="() => onFlagCell(x, y)"
         >
-          <div>
+          <div
+            :class="
+              cell.isFlagged && !cell.isRevealed() && !bombed ? 'flagged' : ''
+            "
+          >
             <div v-if="bombed && cell.hasMine">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +94,8 @@ const revealCell = (board: BoardCell[][], x: number, y: number) => {
               </svg>
             </div>
             <div v-else-if="cell.isRevealed()">
-              {{ cell.minesAround(boardState, x, y) }}
+              <p v-if="cell.minesAround(boardState, x, y) === 0"></p>
+              <p v-else>{{ cell.minesAround(boardState, x, y) }}</p>
             </div>
             <svg
               v-else-if="cell.isFlagged"
@@ -98,7 +103,7 @@ const revealCell = (board: BoardCell[][], x: number, y: number) => {
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-flag-fill"
+              class="bi bi-flag-fill flagged"
               viewBox="0 0 16 16"
             >
               <path
@@ -130,6 +135,12 @@ table.map {
         background-color: white;
         width: 2em;
         height: 2em;
+      }
+      div.flagged {
+        background-color: red;
+        width: 2em;
+        height: 2em;
+        color: white;
       }
     }
   }
