@@ -6,10 +6,12 @@ const props = defineProps<{
   game: Game;
 }>();
 
+const bombed = ref<boolean>(false);
 const boardState = ref<BoardCell[][]>(props.game.getBoard().getBoard());
 
 const onRevealCell = (x: number, y: number) => {
-  console.log({ x, y });
+  const board = boardState.value;
+  boardState.value = [...revealCell(board, x, y)];
 };
 
 const onFlagCell = (x: number, y: number) => {
@@ -20,6 +22,23 @@ const onFlagCell = (x: number, y: number) => {
   cell.swapFlag();
   board[x][y] = cell;
   boardState.value = [...board];
+};
+
+const revealCell = (board: BoardCell[][], x: number, y: number) => {
+  const cell = board[x][y];
+  if (cell.hasMine) {
+    // Mine found
+    bombed.value = true;
+  }
+
+  if (cell.minesAround(board, x, y) === 0) {
+    // Reveal around
+  }
+
+  cell.reveal();
+
+  board[x][y] = cell;
+  return board;
 };
 </script>
 
@@ -33,8 +52,25 @@ const onFlagCell = (x: number, y: number) => {
           @auxclick="() => onFlagCell(x, y)"
         >
           <div>
+            <div v-if="bombed && cell.hasMine">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-emoji-expressionless-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM4.5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm5 0h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm-5 4h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z"
+                />
+              </svg>
+            </div>
+            <div v-else-if="cell.isRevealed()">
+              {{ cell.minesAround(boardState, x, y) }}
+            </div>
             <svg
-              v-if="cell.isFlagged"
+              v-else-if="cell.isFlagged"
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
