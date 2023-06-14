@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { BoardCell } from "../../services/board/board-cell.service";
 
-defineProps<{
+const props = defineProps<{
   cell: BoardCell;
   x: number;
   y: number;
   bombed: boolean;
   boardState: BoardCell[][];
 }>();
+
+const minesAround = computed(() =>
+  props.cell.minesAround(props.boardState, props.x, props.y)
+);
 </script>
 
 <template>
@@ -29,8 +33,8 @@ defineProps<{
       </svg>
     </div>
     <div v-else-if="cell.isRevealed()">
-      <p v-if="cell.minesAround(boardState, x, y) === 0"></p>
-      <p v-else>{{ cell.minesAround(boardState, x, y) }}</p>
+      <p v-if="minesAround === 0"></p>
+      <p v-else>{{ minesAround }}</p>
     </div>
     <svg
       v-else-if="cell.isFlagged"
