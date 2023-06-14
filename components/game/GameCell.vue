@@ -74,7 +74,7 @@ table.map {
         align-items: center;
       }
       div.unrevealed {
-        background-color: white;
+        background-color: var(--white);
         width: 2em;
         height: 2em;
       }
@@ -82,7 +82,7 @@ table.map {
         background-color: red;
         width: 2em;
         height: 2em;
-        color: white;
+        color: var(--white);
       }
     }
   }
