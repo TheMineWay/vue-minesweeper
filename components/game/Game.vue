@@ -6,6 +6,7 @@ const props = defineProps<{
   game: Game;
 }>();
 
+const startedAt = ref<Date>(new Date(Date.now()));
 const bombed = ref<boolean>(false);
 const boardState = ref<BoardCell[][]>(props.game.getBoard().getBoard());
 
@@ -70,6 +71,7 @@ const revealCell = (board: BoardCell[][], x: number, y: number) => {
 
 const restart = () => {
   bombed.value = false;
+  startedAt.value = new Date(Date.now());
   boardState.value = new Game(
     props.game.getBoard().getBoard().length,
     props.game.getBoard().getBoard()[0].length
@@ -81,6 +83,9 @@ const restart = () => {
 
 <template>
   <div class="flex justify-center content-center flex-col gap-4">
+    <div class="flex justify-center">
+      <Timer :countFrom="startedAt" />
+    </div>
     <div v-if="!stillRemaining()">
       <h1 class="text-center">{{ $t("game.endgame.Win") }}</h1>
     </div>
