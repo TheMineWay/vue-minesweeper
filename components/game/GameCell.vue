@@ -12,6 +12,17 @@ const props = defineProps<{
 const minesAround = computed(() =>
   props.cell.minesAround(props.boardState, props.x, props.y)
 );
+
+const minesAroundColor = computed(() => {
+  switch (minesAround.value) {
+    case 1:
+      return "cyan";
+    case 2:
+      return "green";
+    default:
+      return "red";
+  }
+});
 </script>
 
 <template>
@@ -34,7 +45,7 @@ const minesAround = computed(() =>
     </div>
     <div v-else-if="cell.isRevealed()">
       <p v-if="minesAround === 0"></p>
-      <p v-else>{{ minesAround }}</p>
+      <p v-else :style="`color: ${minesAroundColor}`">{{ minesAround }}</p>
     </div>
     <svg
       v-else-if="cell.isFlagged"
