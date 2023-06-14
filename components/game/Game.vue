@@ -121,7 +121,7 @@ table.map {
     td {
       width: 2em;
       height: 2em;
-      border: 1px solid white;
+      border: 1px solid var(--white);
     }
   }
 }

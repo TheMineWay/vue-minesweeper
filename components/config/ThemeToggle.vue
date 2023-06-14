@@ -9,8 +9,12 @@ const onSwicthTheme = () => {
   applyTheme(theme === "dark" ? "light" : "dark");
 };
 
-const applyTheme = (theme: Theme) =>
+const applyTheme = (theme: Theme) => {
   document.querySelector("html")?.setAttribute("data-theme", theme);
+  document
+    .querySelector(":root")
+    ?.style?.setProperty("--white", theme === "dark" ? "white" : "gray");
+};
 
 applyTheme(getTheme());
 </script>
