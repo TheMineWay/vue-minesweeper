@@ -13,7 +13,7 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/node": "^20",
-    "nuxt": "^3.7.0",
+    "nuxt": "^3.7.1",
     "postcss": "^8.4.29",
     "postcss-nested": "^6.0.1",
     "daisyui": "^3.6.5"
