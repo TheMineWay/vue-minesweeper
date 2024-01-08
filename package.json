@@ -16,7 +16,7 @@
     "nuxt": "^3.9.0",
     "postcss": "^8.4.32",
     "postcss-nested": "^6.0.1",
-    "daisyui": "^4.4.24"
+    "daisyui": "^4.5.0"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^8.0.0"
