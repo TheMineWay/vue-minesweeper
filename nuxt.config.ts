@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       },
     ],
     defaultLocale: "en",
-    strategy: "no_prefix",
+    strategy: "prefix_and_default",
     lazy: true,
     langDir: "locales/",
   },
