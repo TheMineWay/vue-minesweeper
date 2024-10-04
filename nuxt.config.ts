@@ -1,3 +1,5 @@
+import pk from "./package.json";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -16,4 +18,9 @@ export default defineNuxtConfig({
   },
   components: [{ path: "~/components", pathPrefix: false }],
   ssr: false,
+  app: {
+    baseURL:
+      "/" +
+      pk.repository.url.split("/").find((_, i, { length }) => i === length - 1),
+  },
 });

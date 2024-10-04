@@ -2,6 +2,14 @@
   "name": "nuxt-app",
   "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "Joel Campos",
+    "url": "https://www.linkedin.com/in/joelcamposoliva/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheMineWay/vue-minesweeper"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
