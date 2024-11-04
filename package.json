@@ -23,7 +23,7 @@
     "@types/node": "^22",
     "nuxt": "^3.13.2",
     "postcss": "^8.4.33",
-    "postcss-nested": "^6.2.0",
+    "postcss-nested": "^7.0.2",
     "daisyui": "^4.12.13"
   },
   "dependencies": {
