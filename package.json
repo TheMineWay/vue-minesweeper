@@ -27,6 +27,6 @@
     "daisyui": "^4.12.14"
   },
   "dependencies": {
-    "@nuxtjs/i18n": "^9.1.0"
+    "@nuxtjs/i18n": "^9.1.1"
   }
 }
