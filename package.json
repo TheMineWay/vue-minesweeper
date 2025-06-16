@@ -20,7 +20,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.12.2",
-    "@types/node": "^22",
+    "@types/node": "^24",
     "nuxt": "^3.16.0",
     "postcss": "^8.4.49",
     "postcss-nested": "^7.0.2",
